@@ -1,48 +1,69 @@
-import React from 'react'
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-function Login() {
+const Login = () => {
+  const navigate = useNavigate();
+  const [input, setInput] = useState(null);
+  const handleChange = (event) => {
+    setInput(event.target.value);
+    console.log(input);
+  };
+  const handleClick = () => {
+    if (input === null) {
+      alert("Please Enter Email and Password");
+    } else {
+      navigate("/home");
+    }
+  };
   return (
     <div class="box-form">
-    <div class="left">
-      <div class="overlay">
-      <h1>Hello World.</h1>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-      Curabitur et est sed felis aliquet sollicitudin</p>
-      <span>
-        <p>login with social media</p>
-        <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-        <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i> Login with Twitter</a>
-      </span>
+      <div class="left">
+        <div class="overlay">
+          <h1>Hello World.</h1>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
+            et est sed felis aliquet sollicitudin
+          </p>
+          <span>
+            <p>login with social media</p>
+            <a href="#">
+              <i class="fa fa-facebook" aria-hidden="true"></i>
+            </a>
+            <a href="#">
+              <i class="fa fa-twitter" aria-hidden="true"></i> Login with
+              Twitter
+            </a>
+          </span>
+        </div>
       </div>
-    </div>
-    
-    
-      <div class="right">
-      <h5>Login</h5>
-      <p>Don't have an account? <a href="#">Creat Your Account</a> it takes less than a minute</p>
-      <div class="inputs">
-        <input type="text" placeholder="user name"/>
-        <br/>
-        <input type="password" placeholder="password"/>
-      </div>
-        
-        <br/>
-        
-      <div class="remember-me--forget-password">
-         
-    <label>
-      <input type="checkbox" name="item" checked/>
-      <span class="text-checkbox">Remember me</span>
-    </label>
-        <p>forget password?</p>
-      </div>
-        
-        <br/>
-        <button>Login</button>
-    </div>
-    
-  </div>
-  )
-}
 
-export default Login
+      <div class="right">
+        <h5>Login</h5>
+
+        <div class="inputs">
+          <input type="text" placeholder="user name" onChange={handleChange} />
+          <br />
+          <input
+            type="password"
+            placeholder="password"
+            onChange={handleChange}
+          />
+        </div>
+
+        <br />
+
+        <div class="remember-me--forget-password">
+          <label>
+            <input type="checkbox" name="item" checked />
+          </label>
+          <p>forget password?</p>
+        </div>
+
+        <br />
+        <button onClick={handleClick}>Login</button>
+      </div>
+    </div>
+  );
+};
+
+export default Login;
